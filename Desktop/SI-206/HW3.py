@@ -83,20 +83,27 @@ class Fortune_Teller:
     #   Not clear: 47
     #   The most frequent answer after 200 was Not clear
 
-    def most_common(self):
-        self.count_fortune_list = []
-        user_input = int(input("Enter a number"))
-        for i in range(user_input + 1):
+    def most_common(self, inupt):
+        self.fortunes_history_list = []
+        for i in range(inupt):
             self.get_fortune()
-            self.count_fortune_list.append(self.get_fortune())
-        for answer in self.count_fortune_list():
-            print("Yes: ", answer.count('Yes'))
-            print("No: ", answer.count('No'))
-            print("Ask again: ", answer.count('Ask again'))
-            print("Maybe: ", answer.count('Maybe'))
-            print("Not clear: ", answer.count('Not clear'))
-            print("The most common answer after ", user_input, " was ", answer)
 
+        for answer in self.fortunes_list:
+            count = 0
+
+            for history in self.fortunes_history_list:
+                if answer == self.fortunes_list[history]:
+                    count += 1
+        
+            print(answer, ": ", count)
+            
+            
+
+            
+
+
+            
+    
 
             
 
