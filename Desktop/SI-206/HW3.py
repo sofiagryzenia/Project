@@ -66,7 +66,7 @@ class Fortune_Teller:
         for index in self.fortunes_history_list:
             if index == "":
                 print("None yet")
-            print(index, self.question, " - ", self.fortunes_list[index])
+            print([index], self.question, "? - ", self.fortunes_list[index])
 
 
     # EXTRA POINTS
@@ -84,12 +84,19 @@ class Fortune_Teller:
     #   The most frequent answer after 200 was Not clear
 
     def most_common(self):
+        self.count_fortune_list = []
         user_input = int(input("Enter a number"))
         for i in range(user_input + 1):
             self.get_fortune()
-        for answer in self.get_fortune():
-            answer_count = answer.count()
-            
+            self.count_fortune_list.append(self.get_fortune())
+        for answer in self.count_fortune_list():
+            print("Yes: ", answer.count('Yes'))
+            print("No: ", answer.count('No'))
+            print("Ask again: ", answer.count('Ask again'))
+            print("Maybe: ", answer.count('Maybe'))
+            print("Not clear: ", answer.count('Not clear'))
+            print("The most common answer after ", user_input, " was ", answer)
+
 
             
 
