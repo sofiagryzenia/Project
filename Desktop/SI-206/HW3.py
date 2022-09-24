@@ -1,7 +1,7 @@
 ﻿# Your name: Sofia Gryzenia
 # Your student id: 80330000
 # Your email: sofiag@umich.edu
-# List who you have worked with on this homework:
+# List who you have worked with on this homework: Lauren Pyfer
 
 
 # import the random module for use in this program
@@ -27,8 +27,7 @@ class Fortune_Teller:
     # For example : "Yes, No, Not clear"
 
     def __str__(self):
-        for fortune in self.fortunes_list:
-            return fortune + ", "
+         return  ", ".join(self.fortunes_list)
 
     # create the get_fortune method
     # it randomly picks an index from 0 to the number of items in the fortunes_list minus one
@@ -53,8 +52,9 @@ class Fortune_Teller:
         if self.question in self.questions_list:
             return "I've already answered that question"
         else:
-            self.questions_list.append(self.question)
-            return self.get_fortune() 
+            while question != "quit":
+                self.questions_list.append(self.question)
+                return self.get_fortune() 
 
     # create the print_questions_history method
     # prints "[answer index] question - answer" for each of the indices in the fortunes_history_list
@@ -63,9 +63,9 @@ class Fortune_Teller:
     # it does not return anything!
 
     def print_questions_history(self):
+        if len(self.fortunes_history_list) < 1: 
+            print("None yet")
         for index in self.fortunes_history_list:
-            if index == "":
-                print("None yet")
             print([index], self.question, "? - ", self.fortunes_list[index])
 
 
@@ -94,16 +94,13 @@ class Fortune_Teller:
             for history in self.fortunes_history_list:
                 if answer == self.fortunes_list[history]:
                     count += 1
-        
+            
+                
             print(answer, ": ", count)
-            
-            
-
+           
             
 
-
             
-    
 
             
 
@@ -114,7 +111,11 @@ def main():
     # You are welcome to replace the answer_list with your desired answers
     fortunes_list = ["Yes", "No", "Ask again", "Maybe", "Not clear"]
     bot = Fortune_Teller(fortunes_list)
-
+    question = input("Whats your question")
+    while question != "quit":
+        answer = bot.question_check(question)
+        print(question + " - " + answer)
+        question = input("answer another question or quit to exit")
     # get the first question or quit
 
     # loop while question is not "quit"
